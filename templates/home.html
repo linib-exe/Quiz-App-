@@ -2,6 +2,12 @@
 <html>
 <head>
     <title>Quiz Home</title>
+    <style>
+        ul {
+            list-style-type: none;  /* Remove the list bullet points */
+            padding-left: 0;        /* Remove the default padding */
+        }
+    </style>
 </head>
 <body>
 
@@ -13,21 +19,20 @@
         <strong>{{ question.text }}</strong>
         <ul>
         {% for choice in question.choices.all %}
-            <li style="list-style-type: none;">
-                <input type="radio" id="choice{{ choice.id }}" name="question{{ question.id }}">
+            <li>
+                <input type="radio" id="choice{{ choice.id }}" name="question{{ question.id }}" value="{{ choice.id }}">
                 <label for="choice{{ choice.id }}">
                     {{ choice.text }}
                 </label>
-                {% comment %}
-                                                                                            {% if choice.is_correct %}
-                                                                                                <span style="color:green;">(Correct Answer)</span>
-                                                                                            {% endif %}
-                {% endcomment %}
+                {% if choice.is_correct %}
+                    <span style="color:green;">(Correct Answer)</span>
+                {% endif %}
             </li>
         {% endfor %}
         </ul>
     {% endfor %}
     <input type="submit" value="Submit">
 </form>
+
 </body>
 </html>
