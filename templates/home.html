@@ -24,9 +24,11 @@
                 <label for="choice{{ choice.id }}">
                     {{ choice.text }}
                 </label>
+                {% comment %}
                 {% if choice.is_correct %}
                     <span style="color:green;">(Correct Answer)</span>
                 {% endif %}
+                {% endcomment %}
             </li>
         {% endfor %}
         </ul>
